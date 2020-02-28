@@ -1,0 +1,23 @@
+.appHeader{
+  font-family: 'Poppins' ;
+  height: 80px;
+  .img-header{
+   height: 15%;
+  }
+}
+.nav-item-header{
+  a{
+    text-decoration:none;
+  }
+  &:hover{
+  animation: forwards 1s navitem_hover;
+  }
+}
+@keyframes navitem_hover {
+  from{
+    text-shadow: none;
+  }
+  to{
+    text-shadow: 25px 1px 0px #37C996;
+  }
+}
