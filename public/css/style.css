@@ -13,6 +13,18 @@
   animation: forwards 1s navitem_hover;
 }
 
+.img {
+  border-radius: 30px;
+}
+
+.space {
+  background: black;
+}
+
+body {
+  animation: normal 2s showpage;
+}
+
 @keyframes navitem_hover {
   from {
     text-shadow: none;
@@ -20,6 +32,22 @@
   to {
     text-shadow: 25px 1px 0px #37C996;
   }
+}
+@keyframes showpage {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

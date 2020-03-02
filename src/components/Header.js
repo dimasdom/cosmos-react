@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from '@reach/router'
+import Logo from '../cosmos-logo-white.png'
 let Header = () =>(
     <header className={"header bg-dark appHeader"}>
         <div className={"container"}>
             <div className={"row"}>
                 <div className={"col-6"}>
-                    <Link to={'/'}><img className="img-fluid m-2 img-header" src="https://cosmos.network/images/logos/cosmos-logo-white.png"/></Link>
+                    <Link to={'/'}><img className="img-fluid m-2 img-header" src={Logo}/></Link>
                 </div>
                 <div className="col-6">
                     <div className="navbar-nav justify-content-end">
