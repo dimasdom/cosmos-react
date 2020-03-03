@@ -1,3 +1,4 @@
+import {FETCH_MARS_WEATHER} from '../actions/actionstype'
 let initialstate = {
 
 }
@@ -10,5 +11,8 @@ let MarsWeatherReducer = (state = initialstate , {type,payload}) =>{
                     ...payload
                 }
             }
+            default : return state
         }
 }
+
+export default MarsWeatherReducer

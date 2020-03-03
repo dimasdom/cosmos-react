@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react'
 import style from "styled-components";
+import {connect} from "react-redux";
+import {fetchMarsWeatherThunk} from "../redux/thunks/fetchPicOfDay";
+import {Link} from "@reach/router";
 
 let Style = style.div`
 background:url(${props => props.back});
@@ -10,37 +13,73 @@ width:${props => props.width}px;
 `
 
 let Mars = (props)=>{
-
+    debugger
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
             someFetchActionCreator();
         }, [])
     }
-    useFetching()
+    useFetching(props.fetchMarsWeatherThunk)
 
     return(
         <>
             <div className="space">
                 <video height={window.innerHeight} width={window.innerWidth} autoPlay muted loop id="myVideo">
-                    <source src="http://dl57.y2mate.com/?file=M3R4SUNiN3JsOHJ6WWQ2a3NQS1Y5ZGlxVlZIOCtyZ0ptY2NwakNJc0ZhcFlyNElobkxYd2U1bGZFWlVkNDVPRU9zbHQvQWVJVG9IYmFGK1orSlUyRmpXSC90bzRoaS9PNTRaOUhKdFhUeG50ai9PaGszUWtyd3JsS3AyZk03c1RQMUZpOFUxaXh5UGR6LzdaOGxpenZueS90SEtSWXpBTHBqSUVNOHFCb2NjWXhWYjVmZG45OWJzU2xDK21zcVVZaXFqTnBFLzcwK1o0dTlCOFcwcGdXcUFBaU0yamthR2Q4d2xQMU5kTmpRdWhzZkt2RkpzaEZhaWJKR1lsWm5GWXZyKzNDVWhZM0RORDYzcnQ%3D" type="video/mp4"/>
+                    <source src="https://www.jpl.nasa.gov/video/download.php?id=653&download=webm" type="video/webm"/>
                 </video>
-            <h1 className="display-1 text-center text-white">Weather on mars</h1>
-            <h1 className="display-4 text-white ">Status on {"2020"}</h1>
-            <div className="row">
-                <div className="col-3 shadow text-white ">1</div>
-                <div className="col-3 shadow text-white">2</div>
-                <div className="col-3 shadow text-white">3</div>
-                <div className="col-3 shadow text-white">4</div>
-            </div>
-            <div className="row">
-                <div className="col-3 shadow text-white">5</div>
-                <div className="col-3 shadow text-white">6</div>
-                <div className="col-3 shadow text-white">7</div>
-                <div className="col-3 shadow text-white">8</div>
-            </div>
+                <Style  back={"https://naked-science.ru/wp-content/uploads/2018/11/field_image_nasa-insight-mars-illustration.jpg"}>
+            <h1 className="display-4 m-4 text-center text-white">Latest Weather
+                at Elysium Planitia</h1>
+            <h1 className="h6 text-center   m-4 text-white ">
+                InSight is taking daily weather measurements
+                (temperature, wind, pressure)
+                on the surface of Mars at Elysium Planitia,
+                a flat, smooth plain near Mars’ equator.</h1>
+
+                    <div className="container">
+                        <div className="row">
+                            { props.MarsWeather.sol_keys ?
+                                props.MarsWeather.sol_keys.map(keyn=> <div className="col-3 m-3 shadow text-white">
+                                    <p className="h6" >Sol{keyn}</p>
+                                    <p>Avarage t{props.MarsWeather[keyn].AT.av}</p>
+                                    <p>Min:{props.MarsWeather[keyn].AT.mn}</p>
+                                    <p>Max:{props.MarsWeather[keyn].AT.mx}</p>
+                                </div>)
+                                : "Loading ..."
+                            }
+                        </div>
+                    </div>
+                </Style>
         </div>
+            <Style back={"https://upload.wikimedia.org/wikipedia/commons/d/dc/PIA17944-MarsCuriosityRover-AfterCrossingDingoGapSanddune-20140209.jpg"}>
+            <div className="container">
+                <p className="display-4 text-center">Rowers</p>
+                <div className="row">
+                    <div className="col-sm-12 col-md-4">
+                        <h1>Curiosity</h1>
+                        <Link to={"/mars/curiosity"}><img className="img-fluid" src={"https://naked-science.ru/wp-content/uploads/2019/06/field_image_pia23240_hires.jpg"}/></Link>
+                    </div>
+                    <div className="col-sm-12 col-md-4">
+                        <h1>Opportunity</h1>
+                        <Link to={"/mars/opportunity"}><img src="https://i.pinimg.com/originals/2f/be/9a/2fbe9a273ed63cd9a227bd803b3da834.png" alt="" className="img-fluid"/></Link>
+                    </div>
+                    <div className="col-sm-12 col-md-4">
+                        <h1>Spirit</h1>
+                        <Link to={"/mars/spirit"}><img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg" alt="" className="img-fluid"/></Link>
+                    </div>
+                </div>
+            </div>
+            </Style>
           </>
     )
 }
 
-export default Mars
+let mapStateToProps = (state)=>({
+    MarsWeather:state.MarsWeather
+})
+
+let mapDispatchToProps = {
+    fetchMarsWeatherThunk
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Mars)
