@@ -11,3 +11,7 @@ export let getEPICAPI = async () =>{
 export let getMarsWeatherAPI = async () =>{
     return axios.get("https://api.nasa.gov/insight_weather/?api_key=yLGljaB58XtkdNjIoABTKmJ03ThBBhiXWI343nPU&feedtype=json&ver=1.0").then(response=>{return response.data})
 }
+
+export let getCuriosityPicturesAPI = async (sol,camera,page)=>{
+    return axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${sol}&${camera}&page=${page}&api_key=yLGljaB58XtkdNjIoABTKmJ03ThBBhiXWI343nPU`).then(response =>{return response.data})
+}

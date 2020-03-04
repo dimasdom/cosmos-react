@@ -4,13 +4,15 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import PictureOfADayReducer from "./reducers/PictureOfADayReducer";
 import EPICReducer from "./reducers/EPICReducer";
 import MarsWeatherReducer from "./reducers/MarsWeatherReducer";
+import MarsRoverPicturesReducer from "./reducers/MarsRoverPicturesReducer";
 let midlewares = [thunk,];
 let state = createStore(
     combineReducers(
         {
             PictureOfADay:PictureOfADayReducer,
             EPIC:EPICReducer,
-            MarsWeather:MarsWeatherReducer
+            MarsWeather:MarsWeatherReducer,
+            MarsPictures:MarsRoverPicturesReducer,
         }
     ),composeWithDevTools(applyMiddleware(...midlewares))
 );

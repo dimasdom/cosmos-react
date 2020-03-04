@@ -1,5 +1,5 @@
-import {getEPICAPI, getMarsWeatherAPI, getPicofDayAPI} from "../api/api";
-import {fetchepic, fetchmarsweatherac, fetchpicofday} from "../actions/actioncreators";
+import {getCuriosityPicturesAPI, getEPICAPI, getMarsWeatherAPI, getPicofDayAPI} from "../api/api";
+import {fetchepic, fetchmarscuriositypictures, fetchmarsweatherac, fetchpicofday} from "../actions/actioncreators";
 
 export let fetchPicOfDayThunk = ()=> async (dispatch)=>{
     let PicData = await getPicofDayAPI();
@@ -14,4 +14,9 @@ export let fetchEPICThunk = () => async (dispatch)=>{
 export let fetchMarsWeatherThunk = () => async (dispatch) =>{
     let MarsWeather = await getMarsWeatherAPI();
     dispatch(fetchmarsweatherac(MarsWeather))
+}
+
+export let fetchMarsCuriosityPicturesThunk = (sol,camera,page)=>async(dispatch)=>{
+    let MarsPictures = await getCuriosityPicturesAPI(sol,camera,page);
+    dispatch(fetchmarscuriositypictures(MarsPictures));
 }
