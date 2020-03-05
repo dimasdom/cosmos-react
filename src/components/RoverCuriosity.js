@@ -1,42 +1,52 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
-import {fetchMarsCuriosityPicturesThunk} from "../redux/thunks/fetchPicOfDay";
+import {fetchMarsCuriosityPicturesThunk, fetchMarsRoverPicturesThunk} from "../redux/thunks/fetchThunks";
+import {getCuriosityPhotos} from "../selectors/selectors";
 
-let Curiosity = (props)=>{
+let Curiosity = ({Photos,fetchPictures})=>{
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
-            someFetchActionCreator(2120,"fhaz",2);
+            someFetchActionCreator(2120,"fhaz",1,"curiosity");
         }, [])
+    };
+    useFetching(fetchPictures);
+    let [sol,setsol] = useState("");
+    let [camera,setcamera] = useState("");
+    let [page,setpage]= useState(2);
+    let fetchPic = (sol,cam,page) => {
+        fetchPictures(sol,cam,page,"curiosity")
     }
-    useFetching(props.fetchMarsCuriosityPicturesThunk)
     return(
 <div className="container">
+    <p className="display-1">Pictures by Couriosity</p>
     <div className="input-group">
-        <input type="text" className="form-control" placeholder="sol*" aria-describedby="basic-addon2"/>
+        <input type="text" className="form-control" placeholder={`Max sol : `} aria-describedby="basic-addon2" onChange={(e)=>{setsol(e.target.value)}}/>
             <div className="input-group-append">
-                <button className="btn btn-outline-secondary" >FHAZ</button>
-                <button className="btn btn-outline-secondary" >RHAZ</button>
-                <button className="btn btn-outline-secondary" >MAST</button>
-                <button className="btn btn-outline-secondary" >CHEMKAM</button>
-                <button className="btn btn-outline-secondary" >MAHLI</button>
-                <button className="btn btn-outline-secondary" >MARDI</button>
-                <button className="btn btn-outline-secondary" >NAVCAM</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("fhaz") ; fetchPic(sol,camera,page)}} >FHAZ</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("rhaz") ; fetchPic(sol,camera,page)}}>RHAZ</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("mast") ; fetchPic(sol,camera,page)}}>MAST</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("chemkam") ; fetchPic(sol,camera,page)}}>CHEMKAM</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("mahli") ; fetchPic(sol,camera,page)}}>MAHLI</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("mardi") ; fetchPic(sol,camera,page)}}>MARDI</button>
+                <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("navcam") ; fetchPic(sol,camera,page)}}>NAVCAM</button>
             </div>
     </div>
+    <p className="text-center m-4 ">If the pictures do not appear, then they are not</p>
     <div>
         {
-            props.Photos ? props.Photos.map(p=><img src={p.img_src}/>) : "loading"
+            Photos ? Photos.map(p=><img className="img-fluid" src={p.img_src}/>) : <div className="loader">Loading...</div>
         }
     </div>
+    <button className="btn-success" onClick={()=>{setpage(page+1);fetchPic(sol,camera,page)}}>Load More</button>
 </div>
     )
 }
 
 let mapStateToProps = (state)=>({
-Photos:state.MarsPictures.curiosity.photos
+Photos:getCuriosityPhotos(state)
 })
 let mapDispatchToProps = {
-    fetchMarsCuriosityPicturesThunk
+    fetchPictures:fetchMarsRoverPicturesThunk
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Curiosity)

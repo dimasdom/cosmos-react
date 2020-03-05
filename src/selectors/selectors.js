@@ -9,3 +9,20 @@ export let getEPIC = state =>{
         state.EPIC.epic
     )
 }
+
+export let getMarsWeather = state=>{
+    return(
+        state.MarsWeather
+    )
+}
+
+export const getCuriosityPhotos = state=>{
+    return(
+        state.MarsPictures.curiosity
+    )
+}
+export const getOpportunityPhotos = state =>{
+    return(
+        state.MarsPictures.opportunity.photos
+    )
+}

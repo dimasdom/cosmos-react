@@ -8,6 +8,7 @@ import Earth from "./components/Earth";
 import AboutPic from "./components/aboutpic";
 import Mars from "./components/Mars";
 import Curiosity from "./components/RoverCuriosity";
+import Opportunity from "./components/RoverOpportunity";
 function App() {
   return (
       <Provider store={state}>
@@ -19,6 +20,7 @@ function App() {
               <AboutPic path={"/aboutpic"} />
               <Mars path={"/mars"}/>
               <Curiosity path={"/mars/curiosity"}/>
+              <Opportunity path={"/mars/opportunity"}/>
           </Router>
       </>
       </Provider>

@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
 import style from "styled-components";
 import {connect} from "react-redux";
-import {fetchMarsWeatherThunk} from "../redux/thunks/fetchPicOfDay";
+import {fetchMarsWeatherThunk} from "../redux/thunks/fetchThunks";
 import {Link} from "@reach/router";
+import {getMarsWeather} from "../selectors/selectors";
 
 let Style = style.div`
 background:url(${props => props.back});
@@ -12,14 +13,14 @@ height:${props => props.height}px;
 width:${props => props.width}px;
 `
 
-let Mars = (props)=>{
+let Mars = ({MarsWeather,fetchWeather})=>{
     debugger
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
             someFetchActionCreator();
         }, [])
     }
-    useFetching(props.fetchMarsWeatherThunk)
+    useFetching(fetchWeather)
 
     return(
         <>
@@ -38,14 +39,14 @@ let Mars = (props)=>{
 
                     <div className="container">
                         <div className="row">
-                            { props.MarsWeather.sol_keys ?
-                                props.MarsWeather.sol_keys.map(keyn=> <div className="col-3 m-3 shadow text-white">
+                            { MarsWeather.sol_keys ?
+                                MarsWeather.sol_keys.map(keyn=> <div className="col-3 m-3 shadow text-white">
                                     <p className="h6" >Sol{keyn}</p>
-                                    <p>Avarage t{props.MarsWeather[keyn].AT.av}</p>
-                                    <p>Min:{props.MarsWeather[keyn].AT.mn}</p>
-                                    <p>Max:{props.MarsWeather[keyn].AT.mx}</p>
+                                    <p>Avarage t{MarsWeather[keyn].AT.av}</p>
+                                    <p>Min:{MarsWeather[keyn].AT.mn}</p>
+                                    <p>Max:{MarsWeather[keyn].AT.mx}</p>
                                 </div>)
-                                : "Loading ..."
+                                : <div className="loader">Loading...</div>
                             }
                         </div>
                     </div>
@@ -75,11 +76,11 @@ let Mars = (props)=>{
 }
 
 let mapStateToProps = (state)=>({
-    MarsWeather:state.MarsWeather
+    MarsWeather:getMarsWeather(state)
 })
 
 let mapDispatchToProps = {
-    fetchMarsWeatherThunk
+    fetchWeather:fetchMarsWeatherThunk
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Mars)

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import style from 'styled-components'
 import {Link} from "@reach/router";
-import {fetchPicOfDayThunk} from "../redux/thunks/fetchPicOfDay";
+import {fetchPicOfDayThunk} from "../redux/thunks/fetchThunks";
 import {connect} from "react-redux";
 import {getPictureOfADayInfo} from "../selectors/selectors";
 

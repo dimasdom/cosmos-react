@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react'
 import {Carousel} from 'react-bootstrap'
-import {fetchEPICThunk} from "../redux/thunks/fetchPicOfDay";
+import {fetchEPICThunk} from "../redux/thunks/fetchThunks";
 import {connect} from "react-redux";
 import {getEPIC} from "../selectors/selectors";
 
-let Earth = (props)=>{
+let Earth = ({epic,fetchepic})=>{
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
             someFetchActionCreator();
         }, [])
     }
-    useFetching(props.fetchEPICThunk)
+    useFetching(fetchepic)
     return(
         <Carousel>
-            {props.epic !== [] ? props.epic.map(a => (
+            {epic !== [] ? epic.map(a => (
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
@@ -25,7 +25,7 @@ let Earth = (props)=>{
                         <p>This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR spacecraft</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-            ) ): "Loading..."
+            ) ): <div className="loader">Loading...</div>
             }
         </Carousel>
     )
@@ -35,6 +35,6 @@ let mapStateToProps = (state)=>({
     epic:getEPIC(state)
 })
 let mapDispatchToProps = {
-    fetchEPICThunk
+    fetchepic:fetchEPICThunk
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Earth)
