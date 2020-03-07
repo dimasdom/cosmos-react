@@ -5,12 +5,15 @@ import {connect} from "react-redux";
 import {getEPIC} from "../selectors/selectors";
 
 let Earth = ({epic,fetchepic})=>{
+//Custom hook for fetch data
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
             someFetchActionCreator();
         }, [])
-    }
-    useFetching(fetchepic)
+    };
+
+    useFetching(fetchepic);
+
     return(
         <Carousel>
             {epic !== [] ? epic.map(a => (
@@ -25,16 +28,19 @@ let Earth = ({epic,fetchepic})=>{
                         <p>This image was taken by NASA's EPIC camera onboard the NOAA DSCOVR spacecraft</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-            ) ): <div className="loader">Loading...</div>
+            ) ): "Loading..."
             }
         </Carousel>
     )
 
-}
+};
+
 let mapStateToProps = (state)=>({
     epic:getEPIC(state)
-})
+});
+
 let mapDispatchToProps = {
     fetchepic:fetchEPICThunk
-}
+};
+
 export default connect(mapStateToProps,mapDispatchToProps)(Earth)

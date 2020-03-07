@@ -12,7 +12,7 @@ let Opportunity = ({Photos,fetchPictures})=>{
     useFetching(fetchPictures);
     let [sol,setsol] = useState("");
     let [camera,setcamera] = useState("");
-    let [page,setpage]= useState(2);
+    let [page,setpage]= useState(1);
 
     let fetchPic = (sol,cam,page) => {
         fetchPictures(sol,cam,page,"opportunity")
@@ -21,13 +21,13 @@ let Opportunity = ({Photos,fetchPictures})=>{
         <div className="container">
             <p className="display-1">Pictures by Opportunity</p>
             <div className="input-group">
-                <input type="text" className="form-control" placeholder={`${ Photos ? "Max sol:"+ Photos[0].rover.max_sol : "sol"}`} aria-describedby="basic-addon2" onChange={(e)=>{setsol(e.target.value)}}/>
+                <input type="text" className="form-control" placeholder={"Max sol:"} aria-describedby="basic-addon2" onChange={(e)=>{setsol(e.target.value)}}/>
                 <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("fhaz") ; fetchPic(sol,camera,page)}} >FHAZ</button>
-                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("rhaz") ; fetchPic(sol,camera,page)}}>RHAZ</button>
-                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("navcam") ; fetchPic(sol,camera,page)}}>NAVCAM</button>
-                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("pancam") ; fetchPic(sol,camera,page)}}>PANCAM</button>
-                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("minite") ; fetchPic(sol,camera,page)}}>MINITES</button>
+                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("fhaz") ; fetchPic(sol,camera,1)}} >FHAZ</button>
+                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("rhaz") ; fetchPic(sol,camera,1)}}>RHAZ</button>
+                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("navcam") ; fetchPic(sol,camera,1)}}>NAVCAM</button>
+                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("pancam") ; fetchPic(sol,camera,1)}}>PANCAM</button>
+                    <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("minite") ; fetchPic(sol,camera,1)}}>MINITES</button>
 
                 </div>
             </div>

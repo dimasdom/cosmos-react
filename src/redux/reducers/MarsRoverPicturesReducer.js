@@ -1,23 +1,34 @@
-import {FETCH_MARS_CURIOSITY_PICTURES, FETCH_MARS_OPPORTUNITY_PICTURES} from "../actions/actionstype";
+import {
+    FETCH_MARS_CURIOSITY_PICTURES,
+    FETCH_MARS_OPPORTUNITY_PICTURES,
+    FETCH_MARS_SPIRIT_PICTURES
+} from "../actions/actionstype";
 
 let initialstate = {
     curiosity:[],
-    opportunity:[]
+    opportunity:[],
+    spirit:[]
 }
 
 let MarsRoverPicturesReducer = (state=initialstate,{type,payload}) =>{
-    debugger
+
     switch (type) {
         case FETCH_MARS_CURIOSITY_PICTURES : {
             return{
                 ...state,
-                curiosity: [...state.curiosity,...payload.photos]
+                curiosity: payload.photos
             }
         }
         case FETCH_MARS_OPPORTUNITY_PICTURES :{
             return{
                 ...state,
-                opportunity: payload
+                opportunity:payload.photos
+            }
+        }
+        case FETCH_MARS_SPIRIT_PICTURES :{
+            return{
+                ...state,
+                spirit: payload.photos
             }
         }
         default :return state

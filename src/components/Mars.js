@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {fetchMarsWeatherThunk} from "../redux/thunks/fetchThunks";
 import {Link} from "@reach/router";
 import {getMarsWeather} from "../selectors/selectors";
-
+//Styled component for show video
 let Style = style.div`
 background:url(${props => props.back});
 background-size:cover;
@@ -14,7 +14,7 @@ width:${props => props.width}px;
 `
 
 let Mars = ({MarsWeather,fetchWeather})=>{
-    debugger
+    //Custom hook for fetch data
     const useFetching = (someFetchActionCreator) => {
         useEffect( () => {
             someFetchActionCreator();
