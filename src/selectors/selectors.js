@@ -31,3 +31,8 @@ export const getSpiritPhotos = state =>{
         state.MarsPictures.spirit
     )
 };
+export const getSearchResults = state =>{
+    return(
+        state.SearchPictures.collection
+    )
+}

@@ -1,10 +1,17 @@
-import {getCuriosityPicturesAPI, getEPICAPI, getMarsWeatherAPI, getPicofDayAPI, getRoverPicturesAPI} from "../api/api";
+import {
+    getCuriosityPicturesAPI,
+    getEPICAPI,
+    getMarsWeatherAPI,
+    getPicofDayAPI,
+    getRoverPicturesAPI,
+    getSearchResultsPicturesAPI
+} from "../api/api";
 import {
     fetchepic,
     fetchmarscuriositypictures,
     fetchmarsopportunitypictres, fetchmarsspiritpictures,
-    fetchmarsweatherac,
-    fetchpicofday
+    fetchmarsweatherac, fetchmoresearchpictures,
+    fetchpicofday, fetchsearchpicture
 } from "../actions/actioncreators";
 //Fetch data Thunk
 export const fetchPicOfDayThunk = ()=> async (dispatch)=>{
@@ -34,3 +41,12 @@ export const fetchMarsRoverPicturesThunk = (sol,camera,page,rover)=>async(dispat
         case "spirit":dispatch(fetchmarsspiritpictures(MarsPictures));
     };
 };
+
+export const fetchSearchResultsPicturesThunk = (search,page) => async(dispatch)=>{
+    let Pictures = await getSearchResultsPicturesAPI(search,page);
+    dispatch(fetchsearchpicture(Pictures));
+}
+export const fetchMoreSearchResulstPicturesThunk = (search,page) => async (dispatch)=>{
+    let Pictures = await getSearchResultsPicturesAPI(search,page);
+    dispatch(fetchmoresearchpictures(Pictures))
+}

@@ -5,6 +5,7 @@ import PictureOfADayReducer from "./reducers/PictureOfADayReducer";
 import EPICReducer from "./reducers/EPICReducer";
 import MarsWeatherReducer from "./reducers/MarsWeatherReducer";
 import MarsRoverPicturesReducer from "./reducers/MarsRoverPicturesReducer";
+import SearchPictures from "./reducers/SearchPictures";
 let midlewares = [thunk,];
 let state = createStore(
     combineReducers(
@@ -13,6 +14,7 @@ let state = createStore(
             EPIC:EPICReducer,
             MarsWeather:MarsWeatherReducer,
             MarsPictures:MarsRoverPicturesReducer,
+            SearchPictures:SearchPictures,
         }
     ),composeWithDevTools(applyMiddleware(...midlewares))
 );

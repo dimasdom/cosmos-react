@@ -3,7 +3,7 @@ import {
     FETCH_EPIC,
     FETCH_MARS_WEATHER,
     FETCH_MARS_CURIOSITY_PICTURES,
-    FETCH_MARS_OPPORTUNITY_PICTURES, FETCH_MARS_SPIRIT_PICTURES
+    FETCH_MARS_OPPORTUNITY_PICTURES, FETCH_MARS_SPIRIT_PICTURES, FETCH_SEARCH_PICTURES, FETCH_MORE_SEARCH_PICTURES
 } from "./actionstype";
 
 export const fetchpicofday = (data) => ({type:FETCH_PICTURE_OF_A_DAY , payload : data })
@@ -12,3 +12,5 @@ export const fetchmarsweatherac = (marsweatherobject)=>({type:FETCH_MARS_WEATHER
 export const fetchmarscuriositypictures = (marspictures)=>({type:FETCH_MARS_CURIOSITY_PICTURES , payload:marspictures})
 export const fetchmarsopportunitypictres = (marspictures)=>({type:FETCH_MARS_OPPORTUNITY_PICTURES, payload:marspictures})
 export const fetchmarsspiritpictures = (marspictures)=>({type:FETCH_MARS_SPIRIT_PICTURES,payload:marspictures})
+export const fetchsearchpicture = (pictures)=>({type:FETCH_SEARCH_PICTURES,payload:pictures})
+export const fetchmoresearchpictures = (pictures)=>({type:FETCH_MORE_SEARCH_PICTURES,payload:pictures})

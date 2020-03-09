@@ -11,6 +11,7 @@ import Curiosity from "./components/RoverCuriosity";
 import Opportunity from "./components/RoverOpportunity";
 import Spirit from "./components/RoverSpirit";
 import NewHeader from "./components/NewHeader";
+import SearchPage from "./components/SearchPage";
 function App() {
   return (
       <Provider store={state}>
@@ -24,6 +25,7 @@ function App() {
               <Curiosity path={"/mars/curiosity"}/>
               <Opportunity path={"/mars/opportunity"}/>
               <Spirit path={"/mars/spirit"}/>
+              <SearchPage path={"/search"} />
           </Router>
       </>
       </Provider>
