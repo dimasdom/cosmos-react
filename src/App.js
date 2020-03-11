@@ -10,13 +10,12 @@ import Mars from "./components/Mars";
 import Curiosity from "./components/RoverCuriosity";
 import Opportunity from "./components/RoverOpportunity";
 import Spirit from "./components/RoverSpirit";
-import NewHeader from "./components/NewHeader";
 import SearchPage from "./components/SearchPage";
 function App() {
   return (
       <Provider store={state}>
       <>
-      <NewHeader/>
+      <Header/>
           <Router>
               <PictureOfADay path={"/"}/>
               <Earth path={"/earth"}/>

@@ -3,6 +3,11 @@ import {Carousel} from 'react-bootstrap'
 import {fetchEPICThunk} from "../redux/thunks/fetchThunks";
 import {connect} from "react-redux";
 import {getEPIC} from "../selectors/selectors";
+import style from 'styled-components'
+let EarthStyledComponent = style.div`
+background-color:black;
+height:${props=>props.height}px;
+`
 
 let Earth = ({epic,fetchepic})=>{
 //Custom hook for fetch data
@@ -15,10 +20,12 @@ let Earth = ({epic,fetchepic})=>{
     useFetching(fetchepic);
 
     return(
+        <EarthStyledComponent height={window.innerHeight}>
         <Carousel>
             {epic !== [] ? epic.map(a => (
-                <Carousel.Item>
+                <Carousel.Item key={a.identifier}>
                     <img
+                        key={a.identifier}
                         className="d-block w-100"
                         src={`https://epic.gsfc.nasa.gov/archive/natural/${a.date[0]}${a.date[1]}${a.date[2]}${a.date[3]}/${a.date[5]}${a.date[6]}/${a.date[8]}${a.date[9]}/jpg/${a.image}.jpg`}
                         alt="Earth"
@@ -31,6 +38,7 @@ let Earth = ({epic,fetchepic})=>{
             ) ): "Loading..."
             }
         </Carousel>
+        </EarthStyledComponent>
     )
 
 };

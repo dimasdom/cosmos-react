@@ -40,7 +40,7 @@ let Mars = ({MarsWeather,fetchWeather})=>{
                     <div className="container">
                         <div className="row">
                             { MarsWeather.sol_keys ?
-                                MarsWeather.sol_keys.map(keyn=> <div className="col-3 m-3 shadow text-white">
+                                MarsWeather.sol_keys.map(keyn=> <div key={keyn} className="col-3 m-3 shadow text-white">
                                     <p className="h6" >Sol{keyn}</p>
                                     <p>Avarage t{MarsWeather[keyn].AT.av}</p>
                                     <p>Min:{MarsWeather[keyn].AT.mn}</p>

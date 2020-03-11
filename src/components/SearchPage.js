@@ -4,7 +4,6 @@ import {fetchMoreSearchResulstPicturesThunk, fetchSearchResultsPicturesThunk} fr
 import {connect} from "react-redux";
 
 let SearchPage = ({data,fetchPictures,fetchMorePictures})=>{
-    debugger
     let fetchpic =(search,page)=> {
         fetchPictures(search,page)
     }
@@ -24,7 +23,7 @@ let SearchPage = ({data,fetchPictures,fetchMorePictures})=>{
                 <p>Total Hits:{data === undefined ? "0": data.metadata.total_hits }</p>
                 <div>
                     {
-                        data === undefined ? null : data.items.map(pic=><img className="img-thumbnail" src={pic.links[0].href}/>)
+                        data === undefined ? null : data.items.map(pic=><img key={pic.data[0].nasa_id} className="img-thumbnail" src={pic.links[0].href}/>)
                     }
                 </div>
                 <div className="text-center">
