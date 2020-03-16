@@ -2,8 +2,9 @@ import React from 'react'
 import style from 'styled-components'
 import {connect} from "react-redux";
 import {getPictureOfADayInfo} from "../selectors/selectors";
+
 let Style = style.div`
-height:${props => props.height}px;
+height:${props => props.height+60}px;
 width:${props => props.width}px;
 `
 

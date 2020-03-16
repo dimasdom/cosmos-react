@@ -18,11 +18,11 @@ let Opportunity = ({Photos,fetchPictures})=>{
         fetchPictures(sol,cam,page,"opportunity")
     }
     return(
-        <div className="container">
-            <p className="display-1">Pictures by Opportunity</p>
+        <div className="container text-center">
+            <p className="display-4 text-center">Pictures by Opportunity</p>
             <div className="input-group">
                 <input type="text" className="form-control" placeholder={"Max sol:"} aria-describedby="basic-addon2" onChange={(e)=>{setsol(e.target.value)}}/>
-                <div className="input-group-append">
+                <div className="container text-center m-4">
                     <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("fhaz") ;setpage(2) ; fetchPic(sol,camera,1)}} >FHAZ</button>
                     <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("rhaz") ;setpage(2) ; fetchPic(sol,camera,1)}}>RHAZ</button>
                     <button className="btn btn-outline-secondary" onClick={()=>{ setcamera("navcam") ;setpage(2) ; fetchPic(sol,camera,1)}}>NAVCAM</button>
